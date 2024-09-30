@@ -7,9 +7,9 @@ def filter_by_state(list_of_dict: list, state: str = "EXECUTED") -> list:
     return filtred_list
 
 
-def sort_by_date(list_of_dict: list, direction: bool = True) -> list:
+def sort_by_date(list_dict: list, direction: bool = True) -> list:
     """Принимает список словарей и необязательный параметр, задающий порядок сортировки (по умолчанию — убывание"""
-    sorted_list = sorted(list_of_dict, key=lambda x: ["date"], reverse=direction)
+    sorted_list = sorted(list_dict, key=lambda x: ["date"], reverse=direction)
     return sorted_list
 
 
