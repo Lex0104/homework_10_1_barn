@@ -4,11 +4,11 @@ from src.masks import get_mask_card_number, get_mask_account
 def mask_account_card(number_string: str) -> str:
     """Функция принимает строку и маскирует номер карты и счета"""
     if len(number_string.split()[-1]) == 16:
-        new_masks_account = get_mask_account(number_string.split()[-1])
+        new_masks_account = get_mask_card_number(number_string.split()[-1])
         result = f"{number_string[:-16]} {new_masks_account}"
         return result
     elif len(number_string.split()[-1]) == 20:
-        new_masks_account = get_mask_card_number(number_string.split()[-1])
+        new_masks_account = get_mask_account(number_string.split()[-1])
         result = f"{number_string[:-20]} {new_masks_account}"
     return result
 
