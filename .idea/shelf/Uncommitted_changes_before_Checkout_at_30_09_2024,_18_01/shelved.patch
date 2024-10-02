@@ -1,0 +1,52 @@
+Index: src/processing.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>def filter_by_state(list_of_dict: list, state: str = \"EXECUTED\") -> list:\n    \"\"\"Функция возвращает новый список словарей, у которых ключ state соответствует указанному значению\"\"\"\n    filtred_list = []\n    for ld in list_of_dict:\n        if ld.get(\"state\") == state:\n            filtred_list.append(ld)\n    return filtred_list\n\n\ndef sort_by_date(list_of_dict: list, direction: bool = True) -> list:\n    \"\"\"Принимает список словарей и необязательный параметр, задающий порядок сортировки (по умолчанию — убывание\"\"\"\n    sorted_list = sorted(list_of_dict, key=lambda x: [\"date\"], reverse=direction)\n    return sorted_list\n\n\nprint(\n    sort_by_date(\n        [\n            {\"id\": 41428829, \"state\": \"EXECUTED\", \"date\": \"2019-07-03T18:35:29.512364\"},\n            {\"id\": 939719570, \"state\": \"EXECUTED\", \"date\": \"2018-06-30T02:08:58.425572\"},\n        ]\n    )\n)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/processing.py b/src/processing.py
+--- a/src/processing.py	(revision c4fac6795b79e6e1d2c3ad00c24d768eefd14ff6)
++++ b/src/processing.py	(date 1727708249403)
+@@ -7,9 +7,9 @@
+     return filtred_list
+ 
+ 
+-def sort_by_date(list_of_dict: list, direction: bool = True) -> list:
++def sort_by_date(list_dict: list, direction: bool = True) -> list:
+     """Принимает список словарей и необязательный параметр, задающий порядок сортировки (по умолчанию — убывание"""
+-    sorted_list = sorted(list_of_dict, key=lambda x: ["date"], reverse=direction)
++    sorted_list = sorted(list_dict, key=lambda x: ["date"], reverse=direction)
+     return sorted_list
+ 
+ 
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+--- a/README.md	(revision c4fac6795b79e6e1d2c3ad00c24d768eefd14ff6)
++++ b/README.md	(date 1727706442210)
+@@ -1,0 +1,20 @@
++Работа с виджетом банковских операций клиента
++
++Проект X
++
++Описание:
++
++Проект - виджеты банковских операций клиента - это веб-приложение на Python которое отображает операции клиента.
++
++Установка:
++
++Клонируйте репозиторий:
++git clone https://github.com/username/project-x.git
++Использование:
++
++В файле main-ру можно в передавать различные именования номеров карт и счётов.
++Функций можно передавать дату и время банковской операции и она будет возвращать корректную дату совершения выбранной операции.
++Функции можно передать список всех банковских операций, так же способна возвращать список необходых операций
++Документация:
++
++Для получения дополнительной информации обратитесь к документации.
+\ No newline at end of file
