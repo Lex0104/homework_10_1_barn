@@ -1,4 +1,4 @@
-from src.processing import filter_by_state, sort_by_date
+from src.proccessing import filter_by_state, sort_by_date
 from src.widget import get_data, mask_account_card
 
 print(mask_account_card("MasterCard 7158300734726758"))

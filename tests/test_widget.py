@@ -19,7 +19,6 @@ from src.widget import mask_account_card, get_data
 def test_mask_account_card(number_string, result):
     assert mask_account_card(number_string) == result
 
-
 @pytest.mark.parametrize(
     "old_data, result",
     [
