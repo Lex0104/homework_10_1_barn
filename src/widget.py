@@ -16,4 +16,4 @@ def mask_account_card(number_string: str) -> str:
 def get_data(old_data: str) -> str:
     """Функция принимает на вход строку с датой в формате и форматирует её"""
     new_data = old_data[0:10].split("-")
-    return "-".join(new_data[::-1])
+    return ".".join(new_data[::-1])
