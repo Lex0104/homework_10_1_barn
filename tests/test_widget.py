@@ -30,3 +30,4 @@ def test_mask_account_card(number_string, result):
 )
 def test_get_data(old_data, result):
     assert get_data(old_data) == result
+    assert get_data(old_data) == result
