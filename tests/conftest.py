@@ -1,4 +1,4 @@
-mport pytest
+import pytest
 
 @pytest.fixture
 def number_string():
@@ -15,7 +15,7 @@ def number_string():
 
 
 @pytest.fixture
-def old_data():
+def old_data() :
     return [
         "11.07.2018",
         "03.07.2019",
@@ -24,7 +24,7 @@ def old_data():
 
 
 @pytest.fixture
-def user_card_number():
+def user_card_number() :
     return [
         "7000 79** **** 6361",
         "7158 30** **** 6758",
@@ -33,26 +33,23 @@ def user_card_number():
         "5999 41** **** 6353",
     ]
 
+
 @pytest.fixture
-def account_number():
+def account_number() :
     return [
         "**4305",
         "**9589",
         "**5560",
         "**4305",
     ]
+
+
 import pytest
 
-@pytest.fixture
-def list_dict():
-    return [
-        {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-        {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
-    ]
 
 @pytest.fixture
-def list_dict():
+def list_dict() :
     return [
-        {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
-        {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
+        {"id" : 41428829, "state" : "EXECUTED", "date" : "2019-07-03T18:35:29.512364"},
+        {"id" : 939719570, "state" : "EXECUTED", "date" : "2018-06-30T02:08:58.425572"},
     ]
