@@ -1,4 +1,3 @@
-
 def filter_by_state(list_of_dict: list, state: int = "EXECUTED") -> list:
     """Функция возвращает новый список словарей, у которых ключ state соответствует указанному значению"""
     filtred_list = []
@@ -23,6 +22,7 @@ print(
     )
 )
 
+
 def filter_by_state(list_dict: list, state: int = "EXECUTED") -> int:
     """Функция возвращает новый список словарей, у которых ключ state соответствует указанному значению"""
     filtred_list = []
@@ -37,6 +37,7 @@ def sort_by_date(list_dict: list) -> int:
     sorted_list = sorted(list_dict, key=lambda x: ["date"])
     return sorted_list
 
+
 print(
     sort_by_date(
         [
@@ -45,4 +46,3 @@ print(
         ]
     )
 )
-
