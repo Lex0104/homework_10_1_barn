@@ -1,4 +1,5 @@
 from src.generators import transaction_descriptions, card_number_generator, filter_by_currency
+from src.decorators import log
 
 transactions = (
     [
@@ -93,3 +94,19 @@ for _ in range(5):
 
 for card_number in card_number_generator(1, 5):
     print(card_number)
+
+
+@log(filename="mylog.txt")
+def my_function(x, y):
+    return x + y
+
+my_function(1, 2)
+
+
+@log(filename="mylog.txt")
+def my_function_zero_error(x, y):
+    return x / y
+
+my_function_zero_error(3, 0)
+
+
