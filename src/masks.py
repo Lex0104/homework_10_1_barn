@@ -1,8 +1,10 @@
 def get_mask_card_number(user_card_number: str) -> str:
     """Функция принимает строку и возвращает номер карты пользователя"""
-    return f"{user_card_number[:4]} {user_card_number[4:6]}** **** {user_card_number[12:]}"
+    new_string = f"{user_card_number[0:4]} {user_card_number[4:6]}** **** {user_card_number[12:]}"
+    return new_string
 
 
-def get_mask_account(user_card_number: str) -> str:
+def get_mask_account(account_number: str) -> str:
     """Функция принимает строку и возвращает маску счета"""
-    return f"**{user_card_number[-4:]}"
+    new_mask = f"**{account_number[-4:]}"
+    return new_mask
