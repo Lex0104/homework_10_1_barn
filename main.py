@@ -78,3 +78,12 @@ def my_function_zero_error(x, y):
 
 
 my_function_zero_error(3, 0)
+
+
+json_file_path = os.path.join("data", "operations. json")
+transactions = get_list_transactions(json_file_path.py)
+print(transactions)
+
+for transaction in transactions:
+    rub_amount = amount(transaction)
+    print(f"Транзакция в RUB: {rub_amount}")
