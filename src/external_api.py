@@ -10,15 +10,16 @@ load_dotenv("../ .env")
 API_KEY = os.getenv("API_KEY")
 # Получаем токен доступа из переменных окружения
 
-r = requests.get('https://apilayer.com/exchangerates_data-api')
+r = requests.get("https://apilayer.com/exchangerates_data-api")
+
 
 def converter(transaction: dict):
     """Реализуем функцию, которая принимает на вход транзакцию и возвращает сумму транзакции в рублях.
     Если транзакция была в USD или EUR, происходит обращение к внешнему API для получения текущего курса валют
     и конвертации суммы операции в рубли"""
-    amount = transaction ["operationAmount"]["amount"]
-    currency = transaction ["operationAmount"]["currency"]["code"]
-    if transaction ["operationAmount"]["currency"]["code"] == "RUB":
+    amount = transaction["operationAmount"]["amount"]
+    currency = transaction["operationAmount"]["currency"]["code"]
+    if transaction["operationAmount"]["currency"]["code"] == "RUB":
         return amount
     else:
         headers = {'apikey": 4mLARB2HnFEgAB7cdhgi40Y498sxzP7a'}
@@ -32,4 +33,3 @@ def converter(transaction: dict):
             result = response.json()
             data = result.get("result")
             return data
-
