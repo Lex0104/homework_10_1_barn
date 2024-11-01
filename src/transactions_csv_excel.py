@@ -2,7 +2,7 @@ import csv
 import pandas as pd
 
 
-def transactions_csv(path) -> list:
+def transactions_csv(path: object) -> list:
     """Чтение csv файла"""
     with open(path) as file:
         transaction_list = []

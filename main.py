@@ -1,6 +1,10 @@
-from src.generators import transaction_descriptions, card_number_generator, filter_by_currency
-from src.decorators import log
-from src.dictionary_search import dict_search_bank, number_operations
+# from src.generators import transaction_descriptions, card_number_generator, filter_by_currency
+# from src.decorators import log
+# from src.dictionary_search import dict_search_bank, number_operations
+import os
+from src.utils import get_financial_transactions_data
+from src.transactions_csv_excel import transactions_csv, transactions_xlsx
+
 
 transactions = [
     {
@@ -51,45 +55,6 @@ transactions = [
 ]
 
 
-usd_transactions = filter_by_currency(transactions, "USD")
-for _ in range(3):
-    print(next(usd_transactions)["id"])
-
-
-descriptions = transaction_descriptions(transactions)
-for _ in range(5):
-    print(next(descriptions))
-
-
-for card_number in card_number_generator(1, 5):
-    print(card_number)
-
-
-@log(filename="mylog.txt")
-def my_function(x, y):
-    return x + y
-
-
-my_function(1, 2)
-
-
-@log(filename="mylog.txt")
-def my_function_zero_error(x, y):
-    return x / y
-
-
-my_function_zero_error(3, 0)
-
-
-json_file_path = os.path.join("data", "operations. json")
-transactions = get_list_transactions(json_file_path.py)
-print(transactions)
-
-for transaction in transactions:
-    rub_amount = amount(transaction)
-    print(f"Транзакция в RUB: {rub_amount}")
-
-
 def main():
     work_file = input(
         "Привет! Добро пожаловать в программу работы с банковскими транзакциями. "
@@ -97,40 +62,50 @@ def main():
         "\n1.Получить информацию о транзакциях из JSON-файла"
         "\n2.Получить информацию о транзакциях из CSV-файла"
         "\n3.Получить информацию о транзакциях из XLSX-файла"
-        "\nВвод: ").strip()
+        "\nВвод: "
+    ).strip()
     while True:
         if work_file == "1":
             print("Для обработки выбран JSON-файл")
-            read_file = read_file_json(os.path.join(os.path.dirname(__file__), "data/operations.json"))
+            return get_financial_transactions_data(os.path.join(os.path.dirname(__file__), "data", "operations.json"))
             break
         elif work_file == "2":
             print("Для обработки выбран CSV-файл")
-            read_file = read_file_csv(os.path.join(os.path.dirname(__file__), "data/transactions.csv"))
+            return transactions_csv(
+                "/Users/eduardmaksimovicbarnovskij/PycharmProjects/homework_barnovskiy_9.1/data/transactions.csv"
+            )
             break
         elif work_file == "3":
             print("Для обработки выбран XLSX-файл")
-            read_file = read_file_excel(os.path.join(os.path.dirname(__file__), "data/transactions_excel.xlsx"))
+            return transactions_xlsx(
+                "/Users/eduardmaksimovicbarnovskij/PycharmProjects/homework_barnovskiy_9.1/data/transactions_excel.xlsx"
+            )
             break
         else:
             work_file = input("Данного варианта нет в списке, попробуйте еще раз:\nВвод: ")
 
-        choice_state= input("\nВведите статус, по которому необходимо выполнить фильтрацию. "
-                             "\nДоступные для фильтровки статусы: "
-                             "EXECUTED, CANCELED, PENDING:\nВвод: ").strip().upper()
+            choice_state = (
+                input(
+                    "\nВведите статус, по которому необходимо выполнить фильтрацию. "
+                    "\nДоступные для фильтровки статусы: "
+                    "\nEXECUTED, CANCELED, PENDING:\nВвод: "
+                )
+                .strip()
+                .upper()
+            )
 
-    data = file_selection ()
-    data = choice_state(data)
-    print ( "Отсортировать операции по дате? Да/Нет" )
-    data = choice_sort_by_date(data)
-    print ( "Выводить только рублевые транзакции? Да/Нет")
-    data = sort_by_rub(data)
-    print ( "Отфильтровать список транзакций по определенному слову в описании? Да/Нет" )
-    sort_by_word = input ()
-    data = filter_by_world(data, sort_by_word)
-    print ( "Распечатываю итоговый список транзакций..." )
-    result (data)
+        data = file_selection()
+        data = choice_state(data)
+        print("Отсортировать операции по дате? Да/Нет")
+        data = choice_sort_by_date(data)
+        print("Выводить только рублевые транзакции? Да/Нет")
+        data = sort_by_rub(data)
+        print("Отфильтровать список транзакций по определенному слову в описании? Да/Нет")
+        sort_by_word = input()
+        data = filter_by_world(data, sort_by_word)
+        print("Распечатываю итоговый список транзакций...")
+        result(data)
 
 
-if __name__ == "__main__" :
-    main ()
-
+if __name__ == "__main__":
+    main()

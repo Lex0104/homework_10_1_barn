@@ -165,3 +165,62 @@ def test_get_mask_account_card(number_string, result):
                       f"{mask_account_card(trans["to"])}\nСумма: {trans["amount"]} {trans["currency_code"]}\n")
     else:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        usd_transactions = filter_by_currency(transactions, "USD")
+for _ in range(3):
+    print(next(usd_transactions)["id"])
+
+
+descriptions = transaction_descriptions(transactions)
+for _ in range(5):
+    print(next(descriptions))
+
+
+for card_number in card_number_generator(1, 5):
+    print(card_number)
+
+
+@log(filename="mylog.txt")
+def my_function(x, y):
+    return x + y
+
+
+my_function(1, 2)
+
+
+@log(filename="mylog.txt")
+def my_function_zero_error(x, y):
+    return x / y
+
+
+my_function_zero_error(3, 0)
+
+
+json_file_path = os.path.join("data", "operations. json")
+transactions = get_list_transactions(json_file_path.py)
+print(transactions)
+
+for transaction in transactions:
+    rub_amount = amount(transaction)
+    print(f"Транзакция в RUB: {rub_amount}")
