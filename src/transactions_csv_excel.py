@@ -1,20 +1,19 @@
 import csv
 import pandas as pd
+import os
 
 
-def transactions_csv(path: object) -> list:
+def transactions_csv(path: str) -> list:
     """Чтение csv файла"""
     with open(path) as file:
         transaction_list = []
         py_file = csv.DictReader(file, delimiter=";")
         for row in py_file:
             transaction_list.append(row)
-    return transaction_list
+        return transaction_list
 
 
-print(
-    transactions_csv("/Users/eduardmaksimovicbarnovskij/PycharmProjects/homework_barnovskiy_9.1/data/transactions.csv")
-)
+print(transactions_csv(os.path.join(os.path.dirname(__file__), "data", "transactions.csv")))
 
 
 def transactions_xlsx(path) -> list[dict]:
@@ -24,8 +23,4 @@ def transactions_xlsx(path) -> list[dict]:
     return py_dict
 
 
-print(
-    transactions_xlsx(
-        "/Users/eduardmaksimovicbarnovskij/PycharmProjects/homework_barnovskiy_9.1/data/transactions_excel.xlsx"
-    )
-)
+print(transactions_xlsx(os.path.join(os.path.dirname(__file__), "data", "transactions_excel.xlsx")))

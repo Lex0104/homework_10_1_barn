@@ -71,39 +71,51 @@ def main():
             break
         elif work_file == "2":
             print("Для обработки выбран CSV-файл")
-            return transactions_csv(
-                "/Users/eduardmaksimovicbarnovskij/PycharmProjects/homework_barnovskiy_9.1/data/transactions.csv"
-            )
+            return transactions_csv((os.path.join(os.path.dirname(__file__), "data", "transactions.csv")))
             break
         elif work_file == "3":
             print("Для обработки выбран XLSX-файл")
-            return transactions_xlsx(
-                "/Users/eduardmaksimovicbarnovskij/PycharmProjects/homework_barnovskiy_9.1/data/transactions_excel.xlsx"
-            )
+            return transactions_xlsx((os.path.join(os.path.dirname(__file__), "data", "transactions_excel.xlsx")))
             break
         else:
-            work_file = input("Данного варианта нет в списке, попробуйте еще раз:\nВвод: ")
+            input("Данного варианта нет в списке, попробуйте еще раз:\nВвод: ")
 
-            choice_state = (
+            status_operation = (
                 input(
                     "\nВведите статус, по которому необходимо выполнить фильтрацию. "
                     "\nДоступные для фильтровки статусы: "
-                    "\nEXECUTED, CANCELED, PENDING:\nВвод: "
+                    "EXECUTED, CANCELED, PENDING:\nВвод: "
                 )
                 .strip()
                 .upper()
             )
 
-        data = file_selection()
-        data = choice_state(data)
+            while True:
+                if status_operation == "PENDING" or status_operation == "EXECUTED" or status_operation == "CANCELED":
+                    status_operation = (
+                        input(
+                            f"Статус {status_operation} не доступен.\n"
+                            "\nВведите статус, по которому необходимо выполнить фильтрацию."
+                            "\nДоступные для фильтровки статусы: "
+                            "EXECUTED, CANCELED, PENDING:\nВвод: "
+                        )
+                        .strip()
+                        .upper()
+                    )
+
         print("Отсортировать операции по дате? Да/Нет")
-        data = choice_sort_by_date(data)
-        print("Выводить только рублевые транзакции? Да/Нет")
-        data = sort_by_rub(data)
-        print("Отфильтровать список транзакций по определенному слову в описании? Да/Нет")
-        sort_by_word = input()
-        data = filter_by_world(data, sort_by_word)
-        print("Распечатываю итоговый список транзакций...")
+        user_client = input("Введите да или нет ").lower()
+        if user_client == "Да":
+            print("Отсортировать по возростанию или по убыванию?")
+        user_client_down = input("В порядке убывания/ В порядке возрастания").lower()
+        if user_client_down == " В порядке возрастания":
+            print("Выводить только рублевые транзакции? Да/Нет")
+        user_like_rub = input("Введите да или нет ").lower()
+        if user_like_rub == "Да":
+            print("Отфильтровать список транзакций по определенному слову в описании? Да/Нет")
+        user_transactions = input("Введите да или нет ").lower()
+        if user_transactions == "Да":
+            print("Распечатываю итоговый список транзакций...")
         result(data)
 
 
