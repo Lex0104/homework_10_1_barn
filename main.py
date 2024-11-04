@@ -7,6 +7,7 @@ from src.transactions_csv_excel import transactions_csv, transactions_xlsx
 from src.proccessing import sort_by_date, filter_by_state
 from src.dictionary_search import dict_search_bank
 from src.widget import mask_account_card, get_data
+from src.generators import filter_by_currency
 
 
 transactions = [
@@ -115,7 +116,11 @@ def choice_state(data: list) -> list:
             "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"
         )
         user_input_2 = input()
-        if user_input_2.upper() != "EXECUTED" and user_input_2.upper() != "CANCELED" and user_input_2.upper() != "PENDING":
+        if (
+                user_input_2.upper() != "EXECUTED"
+                and user_input_2.upper() != "CANCELED"
+                and user_input_2.upper() != "PENDING"
+        ):
             print(f'Статус операции "{user_input_2}" недоступен')
         else:
             print(f'Операции отфильтрованы по статусу "{user_input_2}"')
@@ -158,6 +163,7 @@ def sort_word(data: list, sort_by_word: str) -> list:
 
 def final_result(data: list) -> None:
     """Вычисление и вывод результатов по полученному списку транзакций"""
+    global mask_to
     if len(data) == 0:
         print("Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
     else:
@@ -171,7 +177,7 @@ def final_result(data: list) -> None:
                 print(f"{date} {transaction} {mask_from} -> ", end="")
             except KeyError:
                 print(f"{date} {transaction} ", end="")
-            except AttributeError:
+            except KeyError:
                 print(f"{date} {transaction}", end="")
 
                 mask_to = mask_account_card(transaction["to"])
@@ -210,3 +216,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
